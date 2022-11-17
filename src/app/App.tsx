@@ -1,7 +1,16 @@
 import React from 'react';
 
 import './App.css';
-import {NavLink, Outlet, Route, Routes} from "react-router-dom";
+import {NavLink, Outlet, Route, Routes, useParams} from "react-router-dom";
+
+const Profile = () => {
+    const params = useParams<'x | y'>()
+
+    const some = params
+
+    console.log(some)
+    return <div>profile</div>
+}
 
 
 function App() {
@@ -13,16 +22,10 @@ function App() {
             <NavLink to={'/profile/setting'}>setting</NavLink>---
 
             <Routes>
-                <Route path={'/*'} element={<div>main</div>}/>
-                <Route path={'/login'} element={<div>login</div>}/>
-                <Route path={'/profile/setting'} element={
-                    <div>
-                        profile
-                        <Outlet/>
-                    </div>
-                }/>
-                <Route path={'*'} element={<div>profile page not found</div>}/>
-                <Route path={'/login'} element={<div>login</div>}/>
+                <Route path={'/*'} element={<div>404</div>}/>
+                <Route path={'/login'} element={<div>main</div>}/>
+                <Route path={'*'} element={<div>login</div>}/>
+                <Route path={'/profile/:x'} element={<Profile/>}/>
             </Routes>
         </div>
     );
